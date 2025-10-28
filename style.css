@@ -1,0 +1,226 @@
+.md-exporter-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 0 20px 0;
+    width: 100%;
+}
+
+.md-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.md-btn-main {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.2s;
+    min-width: 220px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.md-btn-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    flex: 1;
+}
+
+.md-btn-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 12px;
+    border-left: 1px solid #ddd;
+    background: rgba(0,0,0,0.02);
+    transition: background 0.2s;
+}
+
+.md-btn-toggle:hover {
+    background: rgba(0,0,0,0.05);
+}
+
+.md-btn-main:hover {
+    background: #f5f5f5;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.md-chevron {
+    margin-left: auto;
+    transition: transform 0.2s;
+}
+
+.md-dropdown.active .md-chevron {
+    transform: rotate(180deg);
+}
+
+.md-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    overflow: hidden;
+    z-index: 1000;
+    animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.md-dropdown.active .md-dropdown-menu {
+    display: block;
+}
+
+.md-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 16px;
+    background: white;
+    border: none;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    text-align: left;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.md-dropdown-item span {
+    flex: 1;
+}
+
+.md-dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.md-dropdown-item:hover {
+    background: #f5f5f5;
+}
+
+.md-dropdown-item svg {
+    flex-shrink: 0;
+}
+
+.md-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.md-modal.active {
+    display: flex;
+}
+
+.md-modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow: auto;
+    position: relative;
+}
+
+.md-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #666;
+}
+
+.md-output {
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 4px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 20px 0;
+    font-family: monospace;
+    font-size: 13px;
+}
+
+.md-copy-modal {
+    padding: 10px 20px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.md-toast {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    z-index: 10000;
+}
+
+.md-toast.show {
+    display: block;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .md-exporter-buttons {
+        float: none;
+        margin: 0 0 20px 0;
+        width: 100%;
+    }
+    .md-dropdown {
+        width: 100%;
+    }
+    .md-btn-main {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .md-dropdown-menu {
+        width: 100%;
+    }
+}
