@@ -18,20 +18,20 @@ jQuery(document).ready(function($) {
         }
     }, 500);
     
-    // Quick copy: click sul contenuto del pulsante
+    // Quick copy: click on button content
     $('.md-copy-quick').on('click', function(e) {
         e.stopPropagation();
         var md = getMarkdown();
         if (md) copyText(md);
     });
     
-    // Toggle dropdown: click sulla freccetta
+    // Toggle dropdown: click on arrow
     $('.md-btn-toggle').on('click', function(e) {
         e.stopPropagation();
         $('.md-dropdown').toggleClass('active');
     });
     
-    // Chiudi dropdown quando si clicca fuori
+    // Close dropdown when clicking outside
     $(document).on('click', function(e) {
         if (!$(e.target).closest('.md-dropdown').length) {
             $('.md-dropdown').removeClass('active');
@@ -49,7 +49,7 @@ jQuery(document).ready(function($) {
     function copyText(text) {
         if (navigator.clipboard) {
             navigator.clipboard.writeText(text).then(function() {
-                showToast('Copiato!');
+                showToast('Copied!');
             }).catch(function() {
                 fallbackCopy(text);
             });
@@ -67,9 +67,9 @@ jQuery(document).ready(function($) {
         textarea.select();
         try {
             document.execCommand('copy');
-            showToast('Copiato!');
+            showToast('Copied!');
         } catch(e) {
-            showToast('Errore copia');
+            showToast('Copy error');
         }
         document.body.removeChild(textarea);
     }
@@ -78,20 +78,20 @@ jQuery(document).ready(function($) {
         if (markdown) return markdown;
         
         if (!turndown) {
-            showToast('Caricamento...');
+            showToast('Loading...');
             return '';
         }
         
-        // Usa il titolo corretto passato da PHP
+        // Use correct title passed from PHP
         var title = '';
         if (typeof mdExporterData !== 'undefined' && mdExporterData.title) {
             title = mdExporterData.title;
         } else {
-            // Fallback: cerca nel DOM evitando logo e header del sito
+            // Fallback: search in DOM avoiding logo and site header
             title = $('.entry-title, .post-title, article h1.title, .single-title').first().text() || document.title;
         }
         
-        // Trova il contenuto (prova multipli selettori)
+        // Find content (try multiple selectors)
         var content = null;
         var selectors = [
             '.entry-content',
@@ -113,21 +113,21 @@ jQuery(document).ready(function($) {
         }
         
         if (!content || !content.length) {
-            showToast('Contenuto non trovato');
+            showToast('Content not found');
             return '';
         }
         
-        // Rimuovi i nostri pulsanti e altri elementi non necessari
+        // Remove our buttons and other unnecessary elements
         content.find('.md-exporter-buttons, .md-modal, .md-toast, .comments, .comment-respond, .navigation, .post-navigation, script, style').remove();
         
         var html = content.html() || '';
         
         if (!html.trim()) {
-            // Fallback: usa il contenuto passato da PHP
+            // Fallback: use content passed from PHP
             if (typeof mdExporterData !== 'undefined' && mdExporterData.content) {
                 html = mdExporterData.content;
             } else {
-                showToast('Contenuto vuoto');
+                showToast('Empty content');
                 return '';
             }
         }
