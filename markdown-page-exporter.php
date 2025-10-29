@@ -4,11 +4,29 @@
  * Plugin URI: https://levysoft.it/markdown-page-exporter
  * Description: Esporta i post in formato Markdown pulito: perfetto per portabilità universale (leggibile da qualsiasi editor) e per alimentare LLM (Large Language Models).
  * Version: 1.0.0
- * Author: Antonio Troise (Levysoft.it)
+ * Author: Antonio Troise
  * Author URI: https://levysoft.it
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
+
+/*
+Copyright (C) 2025 Antonio Troise
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
 
 if (!defined('ABSPATH')) {
     exit;
