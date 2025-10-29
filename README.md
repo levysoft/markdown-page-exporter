@@ -456,9 +456,13 @@ Il plugin ha un fallback automatico che usa il contenuto raw da PHP. Se vedi sol
 
 ## 📄 Licenza
 
-GPL v2 or later
+Questo plugin è distribuito sotto licenza GPL v2 or later.
 
 Questo plugin è software libero: puoi ridistribuirlo e/o modificarlo secondo i termini della GNU General Public License pubblicata dalla Free Software Foundation, versione 2 della licenza o (a tua scelta) qualsiasi versione successiva.
+
+Questo programma è distribuito nella speranza che sia utile, ma SENZA ALCUNA GARANZIA, senza nemmeno la garanzia implicita di COMMERCIABILITÀ o IDONEITÀ PER UN PARTICOLARE SCOPO. Vedi la GNU General Public License per maggiori dettagli.
+
+Dovresti aver ricevuto una copia della GNU General Public License insieme a questo programma. In caso contrario, vedi <https://www.gnu.org/licenses/>.
 
 ## 👨‍💻 Autore
 
