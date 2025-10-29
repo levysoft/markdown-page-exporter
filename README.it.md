@@ -1,5 +1,7 @@
 # Markdown Page Exporter
 
+[ [English](README.md) | [Italiano](README.it.md) ]
+
 Plugin WordPress per esportare i tuoi post in formato Markdown con un solo click.
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
