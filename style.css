@@ -1,3 +1,10 @@
+/**
+ * Markdown Page Exporter - Styles
+ * 
+ * @package MarkdownPageExporter
+ * @license GPL v2 or later
+ */
+
 .md-exporter-buttons {
     display: flex;
     justify-content: flex-end;
