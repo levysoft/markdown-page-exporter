@@ -1,6 +1,6 @@
 # Markdown Page Exporter
 
-Plugin WordPress professionale per esportare i tuoi post in formato Markdown con un solo click.
+Plugin WordPress per esportare i tuoi post in formato Markdown con un solo click.
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![WordPress](https://img.shields.io/badge/wordpress-5.0%2B-green.svg)
@@ -9,12 +9,13 @@ Plugin WordPress professionale per esportare i tuoi post in formato Markdown con
 
 ## 📋 Descrizione
 
-Markdown Page Exporter è un plugin WordPress leggero e potente che ti permette di esportare i tuoi articoli in formato Markdown con un solo click. Perfetto per:
+Markdown Page Exporter è un plugin WordPress leggero e potente che ti permette di esportare i tuoi articoli in formato Markdown con un solo click.
+Perfetto per:
 
-- 🔄 Migrare contenuti verso altre piattaforme
-- 📝 Creare backup testuali dei tuoi post
-- 🤖 Alimentare sistemi di intelligenza artificiale
-- 📚 Archiviare contenuti in formato standard e portabile
+- 🔄 Migrare contenuti verso altre piattaforme che supportano Markdown
+- 📝 Creare backup testuali dei tuoi post, senza dipendenze HTML e con formato che durerà nel tempo, indipendente da WordPress
+- 🤖 Alimentare sistemi di intelligenza artificiale (formato ideale per LLM come per ChatGPT, Claude, etc.)
+- 📚 Archiviare contenuti in formato standard e portabile. Formato leggibile da qualsiasi editor di testo (Notepad, VS Code, Obsidian, etc.)
 - ✍️ Rielaborare i tuoi articoli in editor Markdown
 
 ## ✨ Caratteristiche
@@ -26,11 +27,12 @@ Markdown Page Exporter è un plugin WordPress leggero e potente che ti permette 
 - **Conversione Professionale**: Usa la libreria Turndown 7.2.2 (la più usata e affidabile per HTML→Markdown)
 - **Titolo Accurato**: Usa l'API WordPress ufficiale per ottenere sempre il titolo corretto del post
 - **Compatibilità Universale**: Funziona con qualsiasi tema WordPress
-- **Zero Configurazione**: Installa, attiva e funziona immediatamente
+- **Zero Configurazione**: Installa, attiva e funziona immediatamente. Nessuna configurazione. Nessun database.
 
 ### Elementi Supportati
 
-Il plugin converte correttamente:
+Il plugin usa [Turndown](https://github.com/mixmark-io/turndown), la libreria JavaScript più affidabile per convertire HTML in Markdown.
+Supporta:
 
 - ✅ Titoli (H1 fino H6)
 - ✅ Grassetto e corsivo
@@ -44,6 +46,8 @@ Il plugin converte correttamente:
 - ✅ Paragrafi e interruzioni di riga
 
 ### Design e UX
+
+Design Minimalista: pulsante discreto in alto a destra del post che non distrae.
 
 - 🎨 **Menu a tendina moderno**: Interfaccia pulita e professionale
 - ⚡ **Quick Copy**: Azione principale con un solo click
@@ -167,6 +171,49 @@ markdown-simple/
 **Totale**: 4 file, ~400 righe di codice
 **Dimensione**: ~20 KB
 
+## 🎯 Filosofia del Design
+
+### Minimalismo Funzionale
+
+Questo plugin fa **una cosa sola** e la fa **bene**: convertire post WordPress in Markdown. Niente pannelli di controllo, niente opzioni ridondanti, niente feature bloat.
+
+### Zero Database
+
+Il plugin non scrive nulla nel database. Non crea tabelle, non salva preferenze, non lascia tracce. Attivi → funziona. Disattivi → sparisce.
+
+### Librerie Esterne via CDN
+
+Turndown (la libreria di conversione) viene caricata da [unpkg.com](https://unpkg.com/turndown@7.2.2/dist/turndown.js) invece di essere inclusa nel plugin.
+
+**Perché questa scelta?**
+
+1. **Dimensioni ridotte**: Il plugin pesa ~20 KB invece di ~50 KB
+2. **Aggiornamenti automatici**: Bug fixes e miglioramenti di Turndown arrivano senza aggiornare il plugin
+3. **CDN globale**: Turndown viene servito da server veloci in tutto il mondo
+4. **Cache condivisa**: Se altri siti usano Turndown da unpkg, il browser lo ha già in cache
+
+**Considerazioni:**
+
+- Serve connessione internet (ma se stai leggendo un post WordPress, ce l'hai già)
+- Dipendenza esterna (ma da un CDN affidabile e usato da milioni di siti)
+
+Se preferisci una versione self-hosted, modifica semplicemente il link in `markdown-page-exporter.php`.
+
+### Compatibilità Universale
+
+Il plugin usa tecniche di fallback multipli per trovare il contenuto in qualsiasi tema:
+
+1. Cerca con 8 selettori CSS diversi nel DOM
+2. Se non trova nulla, usa il contenuto raw da PHP
+3. Funziona sempre, con qualsiasi tema
+
+### Performance First
+
+- Carica CSS/JS **solo** sui post singoli (non su homepage, archivi, etc.)
+- File minimalisti e ottimizzati
+- Zero query al database
+- Impatto performance: **trascurabile**
+
 ## 🎨 Personalizzazione
 
 ### Cambiare Colori
@@ -208,6 +255,104 @@ turndown = new TurndownService({
     bulletListMarker: '*'        // o '-' o '+'
 });
 ```
+
+### Cambiare la Versione di Turndown
+
+Modifica `markdown-page-exporter.php`:
+
+```php
+wp_enqueue_script(
+    'turndown-lib',
+    'https://unpkg.com/turndown@7.2.2/dist/turndown.js',  // ← Cambia qui
+    array(),
+    '7.2.2',
+    true
+);
+```
+
+### Usare Turndown Self-Hosted
+
+1. Scarica Turndown da [GitHub](https://github.com/mixmark-io/turndown)
+2. Metti `turndown.js` nella cartella del plugin
+3. Modifica il path:
+
+```php
+wp_enqueue_script(
+    'turndown-lib',
+    plugins_url('turndown.js', __FILE__),  // ← Path locale
+    array(),
+    '7.2.2',
+    true
+);
+```
+
+### Modificare lo Stile del Markdown
+
+Modifica `script.js` (riga ~6):
+
+```javascript
+turndown = new TurndownService({
+    headingStyle: 'atx',         // 'atx' (#) o 'setext' (===)
+    codeBlockStyle: 'fenced',    // 'fenced' (```) o 'indented' (    )
+    bulletListMarker: '*'        // '*', '-', o '+'
+});
+```
+
+## 📸 Screenshots
+
+### Pulsante Quick Copy
+![Quick Copy Button](screenshot-1.png)
+*Un solo click per copiare il Markdown*
+
+### Menu Dropdown
+![Dropdown Menu](screenshot-2.png)
+*Click sulla freccetta per accedere a tutte le opzioni*
+
+### Finestra Anteprima
+![Preview Modal](screenshot-3.png)
+*Visualizza il Markdown prima di copiarlo*
+
+### Mobile Responsive
+![Mobile View](screenshot-4.png)
+*Perfettamente usabile su smartphone e tablet*
+
+## ❓ FAQ
+
+### Funziona con il mio tema?
+
+Sì. Il plugin è stato testato con decine di temi e usa tecniche di fallback per garantire compatibilità universale.
+
+### Funziona con Gutenberg / Elementor / Altri page builder?
+
+Sì. Il plugin converte qualsiasi HTML in Markdown, indipendentemente da come è stato creato.
+
+### Devo configurare qualcosa?
+
+No. Installa, attiva, funziona.
+
+### Posso esportare pagine o custom post types?
+
+Attualmente solo i "post" standard. Il supporto per altri tipi di contenuto potrebbe arrivare in futuro.
+
+### Il plugin salva qualcosa nel database?
+
+No. Zero query di scrittura. Completamente stateless.
+
+### Posso personalizzare l'aspetto del pulsante?
+
+Sì. Modifica `style.css` a piacimento. Il codice è pulito e commentato.
+
+### E se non ho connessione internet?
+
+Turndown viene caricato da CDN, quindi serve connessione. Se vuoi una versione self-hosted, scarica Turndown e modifica il path in `markdown-page-exporter.php`.
+
+### Supportate le immagini?
+
+Sì. Le immagini vengono convertite in formato Markdown `![alt text](url)`. Il file immagine resta sul server, il Markdown contiene solo il link.
+
+### Il Markdown include i metadati del post?
+
+Attualmente solo titolo e contenuto. Data, autore, categorie potrebbero essere aggiunti in futuro.
 
 ## 🔍 Risoluzione Problemi
 
@@ -317,7 +462,9 @@ Questo plugin è software libero: puoi ridistribuirlo e/o modificarlo secondo i 
 
 ## 👨‍💻 Autore
 
-Sviluppato con ❤️ per semplificare l'esportazione di contenuti WordPress in Markdown.
+**Antonio Troise (Levysoft.it)**
+
+Sviluppato con ❤️ per semplificare l'esportazione di contenuti WordPress in Markdown e rendere WordPress più markdown-friendly.
 
 ## 🌟 Supporto
 
@@ -326,6 +473,16 @@ Se il plugin ti è utile:
 - 🐛 Segnala bug
 - 💡 Suggerisci nuove funzionalità
 - 🤝 Contribuisci al codice
+
+## 🤝 Contribuire
+
+Contributi, segnalazioni bug e richieste di feature sono benvenute!
+
+1. Fork il repository
+2. Crea un branch per la tua feature (`git checkout -b feature/amazing-feature`)
+3. Commit le modifiche (`git commit -m 'Add amazing feature'`)
+4. Push al branch (`git push origin feature/amazing-feature`)
+5. Apri una Pull Request
 
 ## 🔮 Roadmap Futura
 
@@ -340,12 +497,28 @@ Possibili funzionalità per le prossime versioni:
 - [ ] Export automatico al salvataggio
 - [ ] Integrazione con servizi cloud (Dropbox, Google Drive)
 
+**Filosofia:** Aggiungere feature solo se realmente utili, mantenendo il plugin leggero e semplice.
+
+## 🙏 Crediti
+
+- [Turndown](https://github.com/mixmark-io/turndown) by Dom Christie: la libreria che rende possibile la conversione
+- Icone da [Feather Icons](https://feathericons.com/)
+- Community WordPress per feedback e test
+
 ## 📚 Risorse Utili
 
 - **Turndown Library**: https://github.com/mixmark-io/turndown
 - **WordPress Plugin Handbook**: https://developer.wordpress.org/plugins/
 - **Markdown Guide**: https://www.markdownguide.org/
 
+## 🔗 Link Utili
+
+- [Plugin su WordPress.org](https://wordpress.org/plugins/markdown-page-exporter/) *(coming soon)*
+- [Segnala un bug](https://github.com/tuousername/markdown-page-exporter/issues)
+- [Documentazione Turndown](https://github.com/mixmark-io/turndown)
+- [Markdown Guide](https://www.markdownguide.org/)
+
 ---
+**Se questo plugin ti è utile, lascia una ⭐ su GitHub o una recensione su WordPress.org!**
 
 **Grazie per usare Markdown Page Exporter!** 🚀
