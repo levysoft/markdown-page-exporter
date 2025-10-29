@@ -1,3 +1,10 @@
+/**
+ * Markdown Page Exporter - JavaScript
+ * 
+ * @package MarkdownPageExporter
+ * @license GPL v2 or later
+ */
+
 jQuery(document).ready(function($) {
     var turndown = null;
     var markdown = '';
