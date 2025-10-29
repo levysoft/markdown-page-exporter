@@ -60,6 +60,14 @@ Minimalist Design: discreet button in the top right of the post that doesn't dis
 
 ## 🚀 Installation
 
+### Quick Download
+
+**[⬇️ Download Latest Release (1.0.0)](https://github.com/yourusername/markdown-page-exporter/releases/latest/download/markdown-page-exporter.zip)**
+
+Then upload to WordPress via **Plugins → Add New → Upload Plugin**.
+
+---
+
 ### Method 1: ZIP Upload (Recommended)
 
 1. Download `markdown-page-exporter.zip`
