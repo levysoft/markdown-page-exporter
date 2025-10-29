@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Markdown Page Exporter
- * Plugin URI: https://levysoft.it/markdown-page-exporter
+ * Plugin URI: https://github.com/levysoft/markdown-page-exporter
  * Description: Esporta i post in formato Markdown pulito: perfetto per portabilità universale (leggibile da qualsiasi editor) e per alimentare LLM (Large Language Models).
  * Version: 1.0.0
  * Author: Antonio Troise
