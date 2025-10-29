@@ -509,6 +509,7 @@ Possibili funzionalità per le prossime versioni:
 
 - [Turndown](https://github.com/mixmark-io/turndown) by Dom Christie: la libreria che rende possibile la conversione
 - Icone da [Feather Icons](https://feathericons.com/)
+- [Model Context Protocol](https://modelcontextprotocol.io/): ispirazione per il design del pulsante di copia
 - Community WordPress per feedback e test
 
 ## 📚 Risorse Utili
