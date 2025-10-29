@@ -162,16 +162,25 @@ Design Minimalista: pulsante discreto in alto a destra del post che non distrae.
 
 ## 📁 Struttura File
 
+### Repository GitHub
 ```
-markdown-simple/
+markdown-page-exporter/
 ├── markdown-page-exporter.php    # Plugin principale (PHP)
 ├── style.css                     # Stili per pulsanti e UI
 ├── script.js                     # Logica JavaScript
-└── README.md                     # Questo file
+├── README.md                     # Documentazione (solo GitHub)
+└── README.it.md                  # Documentazione italiana
 ```
 
-**Totale**: 4 file, ~400 righe di codice
-**Dimensione**: ~20 KB
+### ZIP Plugin WordPress (per installazione)
+```
+markdown-page-exporter/
+├── markdown-page-exporter.php    # File principale del plugin
+├── style.css                     # Stili
+└── script.js                     # JavaScript
+```
+
+**Nota**: I file README sono esclusivamente per la documentazione su GitHub e non sono inclusi nel pacchetto ZIP installabile.
 
 ## 🎯 Filosofia del Design
 
@@ -209,12 +218,13 @@ Il plugin usa tecniche di fallback multipli per trovare il contenuto in qualsias
 2. Se non trova nulla, usa il contenuto raw da PHP
 3. Funziona sempre, con qualsiasi tema
 
-### Performance First
+## 📊 Performance
 
-- Carica CSS/JS **solo** sui post singoli (non su homepage, archivi, etc.)
-- File minimalisti e ottimizzati
-- Zero query al database
-- Impatto performance: **trascurabile**
+- **Dimensione plugin**: ~20 KB (3 file principali)
+- **Librerie esterne**: Turndown (~30 KB da CDN)
+- **Caricamento totale**: ~50 KB
+- **Impatto performance**: Minimo (carica solo sui post singoli)
+- **Query database**: 0 (non usa il database)
 
 ## 🎨 Personalizzazione
 
