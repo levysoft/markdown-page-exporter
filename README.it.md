@@ -60,6 +60,13 @@ Design Minimalista: pulsante discreto in alto a destra del post che non distrae.
 
 ## 🚀 Installazione
 
+### Download Rapido
+**[⬇️ Scarica l'Ultima Release (1.0.0)](https://github.com/yourusername/markdown-page-exporter/releases/latest/download/markdown-page-exporter.zip)**
+
+Poi carica su WordPress tramite **Plugin → Aggiungi nuovo → Carica plugin**.
+
+---
+
 ### Metodo 1: Caricamento ZIP (Consigliato)
 
 1. Scarica `markdown-page-exporter.zip`
