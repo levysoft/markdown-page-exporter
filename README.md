@@ -162,16 +162,25 @@ Minimalist Design: discreet button in the top right of the post that doesn't dis
 
 ## 📁 File Structure
 
+### GitHub Repository
 ```
-markdown-simple/
+markdown-page-exporter/
 ├── markdown-page-exporter.php    # Main plugin (PHP)
-├── style.css                     # Styles for buttons and UI
+├── style.css                     # Button and UI styles
 ├── script.js                     # JavaScript logic
-└── README.md                     # This file
+├── README.md                     # Documentation (GitHub only)
+└── README.it.md                  # Italian documentation
 ```
 
-**Total**: 4 files, ~400 lines of code
-**Size**: ~20 KB
+### WordPress Plugin ZIP (for installation)
+```
+markdown-page-exporter/
+├── markdown-page-exporter.php    # Main plugin file
+├── style.css                     # Styles
+└── script.js                     # JavaScript
+```
+
+**Note**: The README files are for GitHub documentation only and are not included in the installable ZIP package.
 
 ## 🎯 Design Philosophy
 
@@ -209,12 +218,13 @@ The plugin uses multiple fallback techniques to find content in any theme:
 2. If nothing found, uses raw content from PHP
 3. Always works, with any theme
 
-### Performance First
+## 📊 Performance
 
-- Loads CSS/JS **only** on single posts (not on homepage, archives, etc.)
-- Minimalist and optimized files
-- Zero database queries
-- Performance impact: **negligible**
+- **Plugin size**: ~20 KB (3 core files)
+- **External libraries**: Turndown (~30 KB from CDN)
+- **Total loading**: ~50 KB
+- **Performance impact**: Minimal (loads only on single posts)
+- **Database queries**: 0 (doesn't use database)
 
 ## 🎨 Customization
 
